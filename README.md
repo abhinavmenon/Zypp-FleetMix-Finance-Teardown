@@ -1,5 +1,8 @@
 # Zypp Electric Finance Teardown
 
+🔗 Live Dashboard:
+https://abhinavmenon.github.io/Zypp-FleetMix-Finance-Teardown/index.html
+
 Independent finance and business analytics teardown of Zypp Electric using publicly available FY25 information and clearly identified assumptions.
 
 ## Objective
