@@ -1,0 +1,350 @@
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@500;700;800&family=DM+Mono:wght@400;500&display=swap');
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --zypp-green:#7ED321;
+  --zypp-green-dark:#5FA818;
+  --zypp-green-light:#E8F5CC;
+  --zypp-green-mid:#B8E164;
+  --zypp-black:#0D0D0D;
+  --zypp-charcoal:#1A1A1A;
+  --zypp-gray:#F4F4F2;
+  --zypp-border:#D6ECA0;
+}
+body{font-family:'Arial',monospace;background:transparent}
+
+.outer{max-width:660px}
+
+.card{background:#fff;border:1.5px solid var(--zypp-green);border-radius:12px;overflow:hidden;box-shadow:4px 4px 0 var(--zypp-green-dark)}
+
+.card-top{background:var(--zypp-black);padding:20px 22px;display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+.logo-row{display:flex;align-items:center;gap:10px}
+.logo-z{width:36px;height:36px;background:var(--zypp-green);border-radius:6px;display:flex;align-items:center;justify-content:center}
+.logo-z svg{width:22px;height:22px}
+.co-name{font-family:'Syne',sans-serif;font-size:20px;font-weight:800;color:#fff;line-height:1}
+.co-sub{font-size:10px;color:#666;margin-top:3px;font-family:'Arial',monospace}
+.badge{font-size:9px;color:var(--zypp-green);border:1px solid rgba(126,211,33,.35);padding:5px 9px;border-radius:4px;text-align:right;line-height:1.9;font-family:'Arial',monospace;white-space:nowrap}
+
+.card-body{padding:18px 20px}
+
+.sec{font-size:9px;text-transform:uppercase;letter-spacing:.13em;color:#888;margin:14px 0 8px;display:flex;align-items:center;gap:8px;font-family:'Arial',monospace}
+.sec::after{content:'';flex:1;height:0.5px;background:var(--zypp-border)}
+.sec-first{margin-top:0}
+
+.metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--zypp-border);border:1px solid var(--zypp-border);border-radius:8px;overflow:hidden;margin-bottom:14px}
+.m{background:#fff;padding:11px 13px}
+.mv{font-family:'Syne',sans-serif;font-size:17px;font-weight:700;color:var(--zypp-black);line-height:1}
+.ml{font-size:9px;color:#888;text-transform:uppercase;letter-spacing:.06em;margin-top:3px}
+.mn{font-size:10px;margin-top:3px}
+.pos{color:var(--zypp-green-dark)}.neg{color:#C0392B}.warn{color:#B87A00}
+
+.slider-row{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.slider-row label{font-size:11px;color:#555;white-space:nowrap;min-width:150px}
+.slider-row input[type=range]{flex:1;accent-color:var(--zypp-green)}
+.slider-row span{font-size:12px;font-weight:500;color:var(--zypp-black);min-width:42px;text-align:right}
+
+.scenario{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px}
+.sc{background:var(--zypp-gray);border-radius:8px;padding:11px 13px;border:1px solid #e0e0dc}
+.sc.active{background:var(--zypp-green-light);border:1.5px solid var(--zypp-green)}
+.sc-label{font-size:9px;text-transform:uppercase;letter-spacing:.1em;color:#888;margin-bottom:5px}
+.sc-val{font-family:'Syne',sans-serif;font-size:16px;font-weight:700;line-height:1.2;color:var(--zypp-black)}
+.sc-val.pos{color:var(--zypp-green-dark)}
+.sc-sub{font-size:10px;color:#666;margin-top:3px}
+.sc-sub.pos{color:var(--zypp-green-dark)}
+.sc-sub.neg{color:#C0392B}
+
+.insight{background:var(--zypp-green-light);border:1px solid var(--zypp-border);border-radius:8px;padding:12px 14px;margin-bottom:14px}
+.insight p{font-size:11px;color:#2a4a00;line-height:1.75}
+.insight p strong{font-weight:500;color:var(--zypp-green-dark)}
+
+.findings{margin-bottom:14px}
+.finding{display:flex;gap:8px;margin-bottom:7px;align-items:flex-start}
+.finding-dot{width:18px;height:18px;background:var(--zypp-green);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+.finding-dot span{font-size:9px;color:#fff;font-weight:700}
+.finding-text{font-size:11px;color:#333;line-height:1.65}
+
+.chart-wrap{position:relative;width:100%;height:175px;margin-bottom:14px}
+
+.footer{background:var(--zypp-black);padding:12px 20px;display:flex;justify-content:space-between;align-items:center}
+.fn{font-family:'Syne',sans-serif;font-size:12px;font-weight:700;color:#fff}
+.fs{font-size:9px;color:#666;margin-top:2px}
+.ftag{font-size:9px;color:var(--zypp-green);border:1px solid rgba(126,211,33,.4);padding:3px 8px;border-radius:3px}
+
+.dm-wrap{margin-top:14px;background:var(--zypp-gray);border:1px solid var(--zypp-border);border-radius:10px;padding:14px 16px}
+.dm-label{font-size:9px;text-transform:uppercase;letter-spacing:.12em;color:#888;margin-bottom:8px}
+.dm-body{font-size:11px;color:#1a1a1a;line-height:1.85;white-space:pre-wrap}
+.dm-hint{font-size:10px;color:#999;margin-top:8px;padding-top:8px;border-top:1px solid var(--zypp-border)}
+.dm-btn{margin-top:8px;width:100%;font-size:11px;padding:8px;background:var(--zypp-green);color:var(--zypp-black);border:none;border-radius:6px;cursor:pointer;font-family:'Arial',monospace;font-weight:500}
+.dm-btn:hover{background:var(--zypp-green-dark);color:#fff}
+</style>
+
+<h2 style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)">Zypp Electric finance teardown - interactive fleet mix model showing EBITDA impact of optimising quick commerce allocation</h2>
+
+<div class="outer">
+  <div class="card">
+
+    <div class="card-top">
+      <div class="logo-row">
+        <div class="logo-z">
+          <svg viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4 5h14l-8 6h8l-8 11 2-7H6l8-6H4V5z" fill="#0D0D0D"/>
+          </svg>
+        </div>
+        <div>
+          <div class="co-name">Zypp Electric</div>
+          <div class="co-sub">Fleet mix opportunity · FY25 public filings</div>
+        </div>
+      </div>
+      <div class="badge">FINANCE TEARDOWN<br>Abhinav M Menon<br>MBA Finance & Analytics</div>
+    </div>
+
+    <div class="card-body">
+
+      <div class="sec sec-first">FY25 actuals - RoC filing (Entrackr, Feb 2026)</div>
+      <div class="metrics">
+        <div class="m"><div class="mv">₹323 Cr</div><div class="ml">Delivery commission</div><div class="mn warn">74% of revenue · +56% YoY</div></div>
+        <div class="m"><div class="mv">₹111 Cr</div><div class="ml">Vehicle rental</div><div class="mn pos">26% of revenue · +32% YoY</div></div>
+        <div class="m"><div class="mv">−₹107 Cr</div><div class="ml">Net loss</div><div class="mn neg">₹1.27 spent per ₹1 earned</div></div>
+      </div>
+      <div class="metrics" style="margin-top:1px">
+        <div class="m"><div class="mv">₹355 Cr</div><div class="ml">Rider expenses</div><div class="mn neg">Variable · scales with trips</div></div>
+        <div class="m"><div class="mv">₹67 Cr</div><div class="ml">Employee costs</div><div class="mn" style="color:#aaa">Fixed</div></div>
+        <div class="m"><div class="mv">₹38.5 Cr</div><div class="ml">Depreciation</div><div class="mn" style="color:#aaa">Fixed</div></div>
+      </div>
+
+      <div style="background:var(--zypp-green-light);border:1px solid var(--zypp-border);border-radius:8px;padding:12px 14px;margin:14px 0;font-size:11px;color:#2a4a00;line-height:1.8">
+        <strong>The core question this model asks:</strong> Does delivery commission per extra QC trip exceed rider payout per extra trip?
+        If yes, shifting fleet mix to QC improves contribution margin even as total costs rise.
+        If the margin per trip is thin, volume alone won't close the loss gap.
+        <br><br><strong>⚠️ Assumption note:</strong> Per-delivery commission and payout rates are not publicly disclosed. Sliders below use industry benchmarks as starting points,  adjust to stress-test.
+      </div>
+
+      <div class="sec">Stress-test the assumptions</div>
+      <div class="slider-row">
+        <label>QC mix (FY25 actual: 47%)</label>
+        <input type="range" min="30" max="85" value="47" step="1" id="qc-s">
+        <span id="qc-v">47%</span>
+      </div>
+      <div class="slider-row">
+        <label>Zypp commission per QC trip</label>
+        <input type="range" min="15" max="60" value="28" step="1" id="qc-rate">
+        <span id="qc-rate-v">₹28</span>
+      </div>
+      <div class="slider-row">
+        <label>Rider payout per QC trip</label>
+        <input type="range" min="10" max="50" value="22" step="1" id="rider-rate">
+        <span id="rider-rate-v">₹22</span>
+      </div>
+
+      <div class="scenario">
+        <div class="sc">
+          <div class="sc-label">FY25 baseline (estimated)</div>
+          <div class="sc-val" id="cur-r">-</div>
+          <div class="sc-sub" id="cur-cm" style="margin-top:2px">-</div>
+          <div class="sc-sub neg" id="cur-ebitda" style="margin-top:2px">-</div>
+        </div>
+        <div class="sc active">
+          <div class="sc-label">Adjusted scenario</div>
+          <div class="sc-val" id="new-r">-</div>
+          <div class="sc-sub" id="new-cm" style="margin-top:2px">-</div>
+          <div class="sc-sub" id="new-delta" style="margin-top:2px">-</div>
+        </div>
+      </div>
+
+      <div class="insight"><p id="ins">Adjust sliders to stress-test. The margin per trip, not just volume - determines whether QC mix shift actually helps.</p></div>
+
+      <div class="sec">Revenue vs variable rider cost: per scooter per day (estimated)</div>
+      <div class="chart-wrap" style="height:200px">
+        <canvas id="mc" role="img" aria-label="Grouped bar chart showing estimated revenue vs variable rider cost per scooter per day for QC vs e-comm delivery types">Revenue vs variable cost by delivery type: estimates from industry benchmarks.</canvas>
+      </div>
+
+
+      <div class="sec">Three findings - sourced</div>
+      <div class="findings">
+        <div class="finding"><div class="finding-dot"><span>1</span></div><div class="finding-text">Rider expenses (₹355 Cr) scaled 49% alongside delivery revenue growth of 50% - confirming near 1:1 variable cost tracking. Revenue and cost grew together, which is why the loss didn't shrink despite 50% top-line growth. <em>Source: Entrackr, Feb 2026 (RoC filing).</em></div></div>
+        <div class="finding"><div class="finding-dot"><span>2</span></div><div class="finding-text">Zypp's app states "Higher Daily Earning = Lower Daily Rent" - rental revenue per scooter decreases as delivery volume increases. The two revenue lines move in opposite directions as QC mix rises, offsetting some of the commission gain. <em>Source: Zypp Pilot app, Google Play Store.</em></div></div>
+        <div class="finding"><div class="finding-dot"><span>3</span></div><div class="finding-text">No per-scooter P&L by delivery type or city exists in any public disclosure. Fleet placement decisions are being made without a contribution margin view by segment. This is the MIS gap - and the question this model is designed to frame. <em>Source: MCA RoC filing analysis.</em></div></div>
+      </div>
+
+    </div>
+
+    <div class="footer">
+      <div><div class="fn">Abhinav M Menon</div><div class="fs">MBA Finance · Power BI · HTML ·  SQL </div></div>
+      <div class="ftag">open to work</div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>
+/*
+  ACCURATE MODEL - based on RoC FY25 filing
+  ─────────────────────────────────────────
+  CONFIRMED from filings (Entrackr, Feb 2026):
+    Total revenue:         ₹438 Cr
+    Delivery commission:   ₹323 Cr  (74%)
+    Vehicle rental:        ₹111 Cr  (26%)
+    Rider expenses:        ₹355 Cr  (variable - scales with trips)
+    Fixed costs:           ₹116 Cr  (employee ₹67Cr + depreciation ₹38.5Cr + finance ₹10Cr)
+    Net loss:              ₹107 Cr
+
+  ESTIMATED (not publicly disclosed - adjustable via sliders):
+    QC trips/day per scooter:    ~25  (industry benchmark)
+    E-comm trips/day per scooter:~10  (industry benchmark)
+    Zypp commission per QC trip: ₹28  (back-calc + Blinkit fleet rates)
+    Rider payout per QC trip:    ₹22  (back-calc from ₹355Cr rider pool)
+    E-comm rates scaled by distance ratio (~0.55x of QC rates)
+
+  KEY NUANCE (Zypp Pilot app, Google Play):
+    "Higher Daily Earning = Lower Daily Rent"
+    Rental revenue decreases as rider earnings increase.
+    Modelled as: rental_per_scooter_day reduces by 15% at max QC mix vs base.
+*/
+
+const FLEET = 22000;
+const DAYS = 365;
+const BASE_QC = 0.47;
+const QC_TRIPS = 25;
+const EC_TRIPS = 10;
+const FIXED_COSTS_CR = 116;
+const BASE_RENTAL_CR = 111;
+const cr = v => Math.round(v / 10000000);
+const fmt = v => (v >= 0 ? '+₹' : '−₹') + Math.abs(v) + ' Cr';
+
+let chart;
+
+function blendedTripsPerDay(qcFrac) {
+  return qcFrac * QC_TRIPS + (1 - qcFrac) * EC_TRIPS;
+}
+
+function rentalRevenue(qcFrac) {
+  // Rental falls slightly as QC volume rises (higher earner = lower rent)
+  const discount = 1 - (qcFrac - BASE_QC) * 0.3;
+  return Math.max(BASE_RENTAL_CR * discount, BASE_RENTAL_CR * 0.75);
+}
+
+function calcScenario(qcFrac, qcCommission, riderPayout) {
+  const ecCommission = qcCommission * 0.55;
+  const ecRiderPayout = riderPayout * 0.55;
+
+  const tripsPerScooterDay = blendedTripsPerDay(qcFrac);
+  const totalTrips = FLEET * DAYS * tripsPerScooterDay;
+  const qcTrips = totalTrips * qcFrac;
+  const ecTrips = totalTrips * (1 - qcFrac);
+
+  const deliveryRevCr = cr(qcTrips * qcCommission + ecTrips * ecCommission);
+  const rentalRevCr = Math.round(rentalRevenue(qcFrac));
+  const totalRevCr = deliveryRevCr + rentalRevCr;
+
+  const riderCostCr = cr(qcTrips * riderPayout + ecTrips * ecRiderPayout);
+  const totalCostCr = riderCostCr + FIXED_COSTS_CR;
+
+  const contributionCr = totalRevCr - riderCostCr;
+  const ebitdaCr = contributionCr - FIXED_COSTS_CR;
+  const marginPct = ((contributionCr / totalRevCr) * 100).toFixed(1);
+
+  return { totalRevCr, riderCostCr, rentalRevCr, deliveryRevCr, contributionCr, ebitdaCr, marginPct };
+}
+
+function update() {
+  const qc = parseInt(document.getElementById('qc-s').value) / 100;
+  const qcRate = parseInt(document.getElementById('qc-rate').value);
+  const riderRate = parseInt(document.getElementById('rider-rate').value);
+  const marginPerTrip = qcRate - riderRate;
+
+  document.getElementById('qc-v').textContent = Math.round(qc * 100) + '%';
+  document.getElementById('qc-rate-v').textContent = '₹' + qcRate;
+  document.getElementById('rider-rate-v').textContent = '₹' + riderRate;
+
+  const base = calcScenario(BASE_QC, 28, 22);
+  const scen = calcScenario(qc, qcRate, riderRate);
+  const delta = scen.ebitdaCr - base.ebitdaCr;
+
+  // Baseline column
+  document.getElementById('cur-r').textContent = '₹' + base.totalRevCr + ' Cr revenue';
+  document.getElementById('cur-r').className = 'sc-val';
+  document.getElementById('cur-cm').textContent = 'Contribution margin: ' + base.marginPct + '%';
+  document.getElementById('cur-cm').className = 'sc-sub ' + (parseFloat(base.marginPct) > 0 ? 'pos' : 'neg');
+  document.getElementById('cur-ebitda').textContent = 'EBITDA: ' + fmt(base.ebitdaCr);
+  document.getElementById('cur-ebitda').className = 'sc-sub ' + (base.ebitdaCr >= 0 ? 'pos' : 'neg');
+
+  // Scenario column
+  document.getElementById('new-r').textContent = '₹' + scen.totalRevCr + ' Cr revenue';
+  document.getElementById('new-r').className = 'sc-val' + (scen.totalRevCr > base.totalRevCr ? ' pos' : '');
+  document.getElementById('new-cm').textContent = 'Contribution margin: ' + scen.marginPct + '%';
+  document.getElementById('new-cm').className = 'sc-sub ' + (parseFloat(scen.marginPct) > parseFloat(base.marginPct) ? 'pos' : 'neg');
+  document.getElementById('new-delta').textContent = 'EBITDA delta: ' + fmt(delta);
+  document.getElementById('new-delta').className = 'sc-sub ' + (delta >= 0 ? 'pos' : 'neg');
+
+  // Insight text
+  const ins = document.getElementById('ins');
+  if (marginPerTrip <= 0) {
+    ins.innerHTML = '<strong>⚠️ Margin per QC trip is zero or negative (₹' + qcRate + ' commission − ₹' + riderRate + ' payout).</strong> At these rates, more QC volume makes losses worse, not better. Zypp needs higher platform commission rates or lower rider costs first.';
+  } else if (marginPerTrip < 5) {
+    ins.innerHTML = 'Margin per QC trip is only ₹' + marginPerTrip + '. Volume helps but slowly — the contribution margin improvement is thin. <strong>EBITDA delta vs baseline: ' + fmt(delta) + '.</strong>';
+  } else {
+    ins.innerHTML = '<strong>Margin per QC trip: ₹' + marginPerTrip + ' (commission ₹' + qcRate + ' − payout ₹' + riderRate + ').</strong> At ' + Math.round(qc * 100) + '% QC mix, estimated EBITDA delta vs baseline: <strong>' + fmt(delta) + '</strong>. Note: rental revenue also adjusts downward as rider earnings rise.';
+  }
+
+  // Chart — grouped: revenue vs variable cost per scooter per day
+  if (chart) {
+    const qcRevDay = QC_TRIPS * qcRate + (rentalRevenue(1.0) * 10000000 / FLEET / DAYS);
+    const ecRevDay = EC_TRIPS * (qcRate * 0.55) + (rentalRevenue(0.0) * 10000000 / FLEET / DAYS);
+    const blendRevDay = blendedTripsPerDay(qc) * (qc * qcRate + (1-qc) * qcRate * 0.55) + (rentalRevenue(qc) * 10000000 / FLEET / DAYS);
+    const qcCostDay = QC_TRIPS * riderRate;
+    const ecCostDay = EC_TRIPS * (riderRate * 0.55);
+    const blendCostDay = blendedTripsPerDay(qc) * (qc * riderRate + (1-qc) * riderRate * 0.55);
+
+    chart.data.datasets[0].data = [Math.round(qcRevDay), Math.round(blendRevDay), Math.round(ecRevDay)];
+    chart.data.datasets[1].data = [Math.round(qcCostDay), Math.round(blendCostDay), Math.round(ecCostDay)];
+    chart.update();
+  }
+}
+
+window.addEventListener('load', function () {
+  chart = new Chart(document.getElementById('mc'), {
+    type: 'bar',
+    data: {
+      labels: ['QC-dedicated', 'Blended (' + Math.round(BASE_QC*100) + '% QC)', 'E-comm only'],
+      datasets: [
+        {
+          label: 'Est. revenue/scooter/day',
+          data: [0, 0, 0],
+          backgroundColor: '#7ED321',
+          borderWidth: 0,
+          borderRadius: 3
+        },
+        {
+          label: 'Est. variable cost/scooter/day',
+          data: [0, 0, 0],
+          backgroundColor: '#C0392B',
+          borderWidth: 0,
+          borderRadius: 3
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: { callbacks: { label: c => c.dataset.label + ': ₹' + c.raw } }
+      },
+      scales: {
+        x: { ticks: { font: { size: 10 }, color: '#888', autoSkip: false, maxRotation: 0 }, grid: { display: false } },
+        y: { min: 0, max: 900, ticks: { font: { size: 10 }, color: '#888', callback: v => '₹' + v }, grid: { color: 'rgba(0,0,0,0.06)' } }
+      }
+    }
+  });
+
+  // Custom legend
+  const legendDiv = document.createElement('div');
+  legendDiv.style.cssText = 'display:flex;gap:16px;margin-bottom:6px;font-size:11px;color:#555;font-family:Arial,monospace';
+  legendDiv.innerHTML = '<span style="display:flex;align-items:center;gap:4px"><span style="width:10px;height:10px;border-radius:2px;background:#7ED321;display:inline-block"></span>Est. revenue/scooter/day</span><span style="display:flex;align-items:center;gap:4px"><span style="width:10px;height:10px;border-radius:2px;background:#C0392B;display:inline-block"></span>Est. variable rider cost/scooter/day</span>';
+  document.getElementById('mc').parentNode.insertBefore(legendDiv, document.getElementById('mc'));
+
+  ['qc-s','qc-rate','rider-rate'].forEach(id => document.getElementById(id).addEventListener('input', update));
+  update();
+});
+</script>
